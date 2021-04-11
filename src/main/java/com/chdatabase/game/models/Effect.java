@@ -1,37 +1,34 @@
 package com.chdatabase.game.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity(name = "item")
+@Entity(name = "effect")
 @Getter
 @Setter
-public class Item {
+public class Effect {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false)
-	private String name;
+	private String fieldAffected;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	private Effect effect;
+	@Column(nullable = false)
+	private Integer value;
 	
-	public Item(String name, Effect effect) {
-		this.name = name;
-		this.effect = effect;
+	public Effect(String fieldAffected, Integer value) {
+		this.fieldAffected = fieldAffected;
+		this.value = value;
 	}
 	
-	public Item() {
+	public Effect() {
 		
 	}
 	
