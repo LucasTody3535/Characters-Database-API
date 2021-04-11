@@ -8,12 +8,12 @@
 		<version>2.4.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.chdatabase</groupId>
-	<artifactId>CharactersDatabaseConnector</artifactId>
+	<groupId>com.triageapi</groupId>
+	<artifactId>TriagesAPI</artifactId>
 	<version>Alfa</version>
 	<packaging>war</packaging>
-	<name>CharactersDatabaseConnector</name>
-	<description>Conexão para a base de dados de personagens fictícios</description>
+	<name>TriagesAPI</name>
+	<description>API para o jogo triages</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
