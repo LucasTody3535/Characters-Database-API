@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,9 +25,10 @@ public class Item {
 	private String name;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private Effect effect;
+	@OrderColumn
+	private Effect[] effect;
 	
-	public Item(String name, Effect effect) {
+	public Item(String name, Effect[] effect) {
 		this.name = name;
 		this.effect = effect;
 	}
