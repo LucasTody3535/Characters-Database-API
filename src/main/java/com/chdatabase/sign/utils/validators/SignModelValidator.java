@@ -1,10 +1,13 @@
 package com.chdatabase.sign.utils.validators;
 
+import org.springframework.stereotype.Component;
+
 import com.chdatabase.game.models.Armor;
 import com.chdatabase.game.models.ClassGenre;
 import com.chdatabase.game.models.Item;
 import com.chdatabase.game.models.Weapon;
 
+@Component
 public class SignModelValidator {
 
 	public boolean validateIsNotNull(String fieldToValidate) {
@@ -78,40 +81,20 @@ public class SignModelValidator {
 	}
 	
 	//Valida campos do Objeto Item
-	private boolean validateItemsFields(Item itens) {
-		if (
-				this.validateIsNotNull(itens.getName()) &&
-				this.validateIsNotNull(itens.getEffect()) &&
-				this.validateIsNotNull(itens.getEffect().getFieldAffected()) &&
-				this.validateIsNotNull(itens.getEffect().getValue())
-			)
-		{
-			if (
-					this.validateIsNotEmpty(itens.getName()) &&
-					this.validateIsNotEmpty(itens.getEffect().getFieldAffected()) &&
-					this.validateIsNumberNotLessThanZero(itens.getEffect().getValue())
-				)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-	
 	private boolean validateItemsFields(Item[] itens) {
 		for(int i = 0; i < itens.length; i++) {
 			Item selectedItem = itens[i];
 			if (
 					this.validateIsNotNull(selectedItem.getName()) &&
 					this.validateIsNotNull(selectedItem.getEffect()) &&
-					this.validateIsNotNull(selectedItem.getEffect().getFieldAffected()) &&
-					this.validateIsNotNull(selectedItem.getEffect().getValue())
+					this.validateIsNotNull(selectedItem.getEffect()[i].getFieldAffected()) &&
+					this.validateIsNotNull(selectedItem.getEffect()[i].getValue())
 					)
 			{
 				if (
 						this.validateIsNotEmpty(selectedItem.getName()) &&
-						this.validateIsNotEmpty(selectedItem.getEffect().getFieldAffected()) &&
-						this.validateIsNumberNotLessThanZero(selectedItem.getEffect().getValue())
+						this.validateIsNotEmpty(selectedItem.getEffect()[i].getFieldAffected()) &&
+						this.validateIsNumberNotLessThanZero(selectedItem.getEffect()[i].getValue())
 						)
 				{
 					return true;
