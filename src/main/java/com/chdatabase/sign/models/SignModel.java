@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import com.chdatabase.game.models.ClassGenre;
+import com.chdatabase.sign.utils.contracts.SignModelContent;
+
 import lombok.Getter;
 import lombok.Setter;
 
