@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.chdatabase.sign.models.SignModel;
+import com.chdatabase.utils.response.ContainerForSuccessOperations;
 import com.chdatabase.utils.response.ResponseContainer;
 
 @Service
@@ -23,6 +24,6 @@ public class SignServices {
 	@PostMapping(consumes = "application/json", produces = "application/json", path = "/sign")
 	public ResponseContainer signIntoGame(@RequestBody SignModel model) {
 		SignModel created = this.controller.verifyContent(model);
-		return new ResponseContainer(created, HttpStatus.CREATED.value());
+		return new ResponseContainer(new ContainerForSuccessOperations("Dados salvos", created), HttpStatus.CREATED.value());
 	}
 }
