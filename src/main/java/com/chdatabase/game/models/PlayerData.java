@@ -7,11 +7,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity(name = "PLAYER")
+//Definição de atributos que serão únicos para cada entidade
+@Table(name = "PLAYER", uniqueConstraints = @UniqueConstraint(columnNames = {"NICKNAME"}))
 @Getter
 @Setter
 public class PlayerData {
@@ -26,12 +30,16 @@ public class PlayerData {
 	@Column(nullable = false)
 	private Long hitPoints;
 	
+	@Column(nullable = false)
+	private Long level;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private ClassGenre classGenre;
 
-	public PlayerData(String nickName, Long hitPoints, ClassGenre classGenre) {
+	public PlayerData(String nickName, Long hitPoints, Long level, ClassGenre classGenre) {
 		this.nickName = nickName;
-		this.hitPoints = hitPoints; 
+		this.hitPoints = hitPoints;
+		this.level = level;
 		this.classGenre = classGenre;
 	}
 	

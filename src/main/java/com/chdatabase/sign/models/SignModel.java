@@ -8,16 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
 import com.chdatabase.game.models.PlayerData;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-// Definição de atributos que serão únicos para cada entidade
-@Table(name = "SIGNMODEL", uniqueConstraints = @UniqueConstraint(columnNames = {"NICKNAME"}))
+@Table(name = "SIGNMODEL")
 @Getter
 @Setter
 public class SignModel {

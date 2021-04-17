@@ -27,13 +27,17 @@ public class Item {
 	@Column(nullable = false)
 	private String description;
 	
+	@Column(nullable = false)
+	private Long quantityOfItems;
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	@OrderColumn
 	private Effect[] effect;
 	
-	public Item(String name, String description, Effect[] effect) {
+	public Item(String name, String description, Long quantityOfItems, Effect[] effect) {
 		this.name = name;
 		this.description = description;
+		this.quantityOfItems = quantityOfItems;
 		this.effect = effect;
 	}
 	

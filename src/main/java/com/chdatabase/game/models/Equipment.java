@@ -33,9 +33,10 @@ public class Equipment {
 	@OrderColumn
 	private Item[] items;
 
-	public Equipment(Weapon weapon, Armor armor) {
+	public Equipment(Weapon weapon, Armor armor, Item[] items) {
 		this.weapon = weapon;
 		this.armor = armor;
+		this.items = items;
 	}
 	
 	public Equipment() {
