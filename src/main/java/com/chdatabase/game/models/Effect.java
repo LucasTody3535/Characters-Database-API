@@ -18,14 +18,14 @@ public class Effect {
 	private Long id;
 	
 	@Column(nullable = false)
-	private String fieldAffected;
-	
-	@Column(nullable = false)
 	private Integer value;
 	
-	public Effect(String fieldAffected, Integer value) {
-		this.fieldAffected = fieldAffected;
+	@Column(nullable = false)
+	private String category;
+	
+	public Effect(Integer value, String category) {
 		this.value = value;
+		this.category = category;
 	}
 	
 	public Effect() {

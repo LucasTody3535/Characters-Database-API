@@ -86,14 +86,16 @@ public class SignModelValidator {
 			Item selectedItem = itens[i];
 			if (
 					this.validateIsNotNull(selectedItem.getName()) &&
+					this.validateIsNotNull(selectedItem.getDescription()) &&
 					this.validateIsNotNull(selectedItem.getEffect()) &&
-					this.validateIsNotNull(selectedItem.getEffect()[i].getFieldAffected()) &&
+					this.validateIsNotNull(selectedItem.getEffect()[i].getCategory()) &&
 					this.validateIsNotNull(selectedItem.getEffect()[i].getValue())
 					)
 			{
 				if (
 						this.validateIsNotEmpty(selectedItem.getName()) &&
-						this.validateIsNotEmpty(selectedItem.getEffect()[i].getFieldAffected()) &&
+						this.validateIsNotEmpty(selectedItem.getDescription()) &&
+						this.validateIsNotEmpty(selectedItem.getEffect()[i].getCategory()) &&
 						this.validateIsNumberNotLessThanZero(selectedItem.getEffect()[i].getValue())
 						)
 				{

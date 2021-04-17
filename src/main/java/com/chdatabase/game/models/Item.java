@@ -23,13 +23,17 @@ public class Item {
 	
 	@Column(nullable = false)
 	private String name;
+
+	@Column(nullable = false)
+	private String description;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@OrderColumn
 	private Effect[] effect;
 	
-	public Item(String name, Effect[] effect) {
+	public Item(String name, String description, Effect[] effect) {
 		this.name = name;
+		this.description = description;
 		this.effect = effect;
 	}
 	
