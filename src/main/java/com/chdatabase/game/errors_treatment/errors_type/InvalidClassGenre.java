@@ -7,8 +7,8 @@ extends ExceptionsGlobalDefaultMethods {
 
 	private static final long serialVersionUID = 781240765594373486L;
 
-	public InvalidClassGenre(String message) {
-		super(message);
+	public InvalidClassGenre(String message, String cause) {
+		super(message, cause);
 	}
 	
 }

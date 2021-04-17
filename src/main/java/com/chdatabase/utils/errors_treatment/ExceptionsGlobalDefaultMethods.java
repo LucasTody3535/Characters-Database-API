@@ -4,8 +4,8 @@ public class ExceptionsGlobalDefaultMethods extends RuntimeException {
 
 	private static final long serialVersionUID = -8851722393726380184L;
 	
-	public ExceptionsGlobalDefaultMethods(String message) {
-		super(message);
+	public ExceptionsGlobalDefaultMethods(String message, String cause) {
+		super(message, new Throwable(cause));
 	}
 	
 	public void errorDescription() {

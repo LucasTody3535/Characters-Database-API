@@ -6,8 +6,8 @@ public class SaveInDatabaseException extends ExceptionsGlobalDefaultMethods {
 
 	private static final long serialVersionUID = 8220887089033339479L;
 
-	public SaveInDatabaseException(String message) {
-		super(message);
+	public SaveInDatabaseException(String message, String cause) {
+		super(message, cause);
 	}
 	
 }
