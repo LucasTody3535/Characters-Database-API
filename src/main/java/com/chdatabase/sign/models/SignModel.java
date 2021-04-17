@@ -7,13 +7,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import com.chdatabase.game.models.ClassGenre;
 import com.chdatabase.sign.utils.contracts.SignModelContent;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity(name = "signmodel")
+@Entity
+// Definição de atributos que serão únicos para cada entidade
+@Table(name = "SIGNMODEL", uniqueConstraints = @UniqueConstraint(columnNames = {"NICKNAME"}))
 @Getter
 @Setter
 public class SignModel {
@@ -22,13 +27,13 @@ public class SignModel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "NAME")
 	private String name;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "NICKNAME", unique = true)
 	private String nickName;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "PASSWORD")
 	private String password;
 	
 	@OneToOne(cascade = CascadeType.ALL)
