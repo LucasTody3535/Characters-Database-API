@@ -2,7 +2,7 @@ package com.chdatabase.sign;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import com.chdatabase.game.errors_treatment.errors_type.InvalidClassGenre;
 import com.chdatabase.sign.models.SignModel;
 import com.chdatabase.sign.utils.validators.SignModelValidator;
 import com.chdatabase.utils.errors_treatment.errors_types.EmptyContentPointerException;
@@ -33,8 +33,10 @@ public class SignController {
 			)
 			{
 				
-				if (this.validatorOfFields.validateClassGenreItems(model.getClassGenre())){					
+				if (this.validatorOfFields.validateClassGenreItems(model.getClassGenre())){
 					return this.dao.save(model);
+				} else {
+					throw new InvalidClassGenre("Dados de classe inválidos!");
 				}
 				
 			} else {
@@ -44,7 +46,6 @@ public class SignController {
 		} else {
 			throw new NullPointerExceptionCustomized("Campo nulo!");
 		}
-		return null;
 	}
 
 }
