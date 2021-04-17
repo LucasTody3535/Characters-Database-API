@@ -24,9 +24,13 @@ public class Armor {
 	@Column(nullable = false)
 	private Integer power;
 	
-	public Armor(String name, Integer power) {
+	@Column(nullable = false)
+	private String designedClass;
+	
+	public Armor(String name, Integer power, String designedClass) {
 		this.name = name;
 		this.power = power;
+		this.designedClass = designedClass;
 	}
 	
 	public Armor() {

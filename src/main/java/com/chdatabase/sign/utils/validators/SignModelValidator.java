@@ -48,11 +48,13 @@ public class SignModelValidator {
 	private boolean validateWeaponOrArmorFields(Weapon armorOrWeapon) {
 		if (
 				this.validateIsNotNull(armorOrWeapon.getName()) &&
-				this.validateIsNotNull(armorOrWeapon.getPower())
+				this.validateIsNotNull(armorOrWeapon.getPower()) &&
+				this.validateIsNotNull(armorOrWeapon.getDesignedClass())
 			)
 		{
 			if (
 					this.validateIsNotEmpty(armorOrWeapon.getName()) &&
+					this.validateIsNotEmpty(armorOrWeapon.getDesignedClass()) &&
 					this.validateIsNumberNotLessThanZero(armorOrWeapon.getPower())
 				)
 			{
@@ -66,11 +68,13 @@ public class SignModelValidator {
 	private boolean validateWeaponOrArmorFields(Armor armorOrWeapon) {
 		if (
 				this.validateIsNotNull(armorOrWeapon.getName()) &&
-				this.validateIsNotNull(armorOrWeapon.getPower())
+				this.validateIsNotNull(armorOrWeapon.getPower()) &&
+				this.validateIsNotNull(armorOrWeapon.getDesignedClass())
 			)
 		{
 			if (
 					this.validateIsNotEmpty(armorOrWeapon.getName()) &&
+					this.validateIsNotEmpty(armorOrWeapon.getDesignedClass()) &&
 					this.validateIsNumberNotLessThanZero(armorOrWeapon.getPower())
 				)
 			{

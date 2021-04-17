@@ -24,9 +24,13 @@ public class Weapon {
 	@Column(nullable = false)
 	private Integer power;
 	
-	public Weapon(String name, Integer power) {
+	@Column(nullable = false)
+	private String designedClass;
+	
+	public Weapon(String name, Integer power, String designedClass) {
 		this.name = name;
 		this.power = power;
+		this.designedClass = designedClass;
 	}
 	
 	public Weapon() {

@@ -20,20 +20,20 @@ public class SignController {
 	public SignModel verifyContent(SignModel model) {
 		if (
 		this.validatorOfFields.validateIsNotNull(model.getName()) &&
-		this.validatorOfFields.validateIsNotNull(model.getNickName()) &&
+		this.validatorOfFields.validateIsNotNull(model.getData().getNickName()) &&
 		this.validatorOfFields.validateIsNotNull(model.getPassword()) &&
-		this.validatorOfFields.validateIsNotNull(model.getClassGenre())
+		this.validatorOfFields.validateIsNotNull(model.getData().getClassGenre())
 		)
 		{	
 			
 			if (
 			this.validatorOfFields.validateIsNotEmpty(model.getName()) &&
-			this.validatorOfFields.validateIsNotEmpty(model.getNickName()) &&
+			this.validatorOfFields.validateIsNotEmpty(model.getData().getNickName()) &&
 			this.validatorOfFields.validateIsNotEmpty(model.getPassword())
 			)
 			{
 				
-				if (this.validatorOfFields.validateClassGenreItems(model.getClassGenre())){
+				if (this.validatorOfFields.validateClassGenreItems(model.getData().getClassGenre())){
 					return this.dao.save(model);
 				} else {
 					throw new InvalidClassGenre("Dados de classe inválidos!");

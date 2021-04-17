@@ -10,8 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import com.chdatabase.game.models.ClassGenre;
-import com.chdatabase.sign.utils.contracts.SignModelContent;
+import com.chdatabase.game.models.PlayerData;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,20 +29,16 @@ public class SignModel {
 	@Column(nullable = false, name = "NAME")
 	private String name;
 	
-	@Column(nullable = false, name = "NICKNAME", unique = true)
-	private String nickName;
-	
 	@Column(nullable = false, name = "PASSWORD")
 	private String password;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private ClassGenre classGenre;
+	private PlayerData data;
 	
-	public SignModel(String name, String nickName, String password, ClassGenre classGenre) {
+	public SignModel(String name, String password, PlayerData data) {
 		this.name = name;
-		this.nickName = nickName;
 		this.password = password;
-		this.classGenre = classGenre;
+		this.data = data;
 	}
 	
 	public SignModel() {
