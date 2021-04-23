@@ -15,7 +15,7 @@ public class SignDAO {
 		try {			
 			return this.repository.save(model);
 		} catch (Exception e) {
-			throw new SaveInDatabaseException("Nickname já existente!");
+			throw new SaveInDatabaseException("Não foi possível realizar cadastro!", "Nickname já existente!");
 		}
 	}
 }
