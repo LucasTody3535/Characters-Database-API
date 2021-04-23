@@ -23,7 +23,7 @@ public class SignServices {
 	
 	@PostMapping(consumes = "application/json", produces = "application/json", path = "/sign")
 	public ResponseContainer signIntoGame(@RequestBody SignModel model) {
-		SignModel created = this.controller.verifyContent(model);
+		SignModel created = this.controller.verifyContentOfSignModelBeforeSave(model);
 		return new ResponseContainer(new ContainerForSuccessOperations("Dados salvos", created), HttpStatus.CREATED.value());
 	}
 }

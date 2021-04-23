@@ -2,11 +2,11 @@ package com.chdatabase.sign;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.chdatabase.game.errors_treatment.errors_type.InvalidClassGenre;
+import com.chdatabase.game.errors_treatment.errors_type.InvalidPlayerData;
+import com.chdatabase.game.utils.PlayerDataValidator;
 import com.chdatabase.sign.models.SignModel;
+import com.chdatabase.sign.utils.errors_treatment.errors_types.InvalidSignFields;
 import com.chdatabase.sign.utils.validators.SignModelValidator;
-import com.chdatabase.utils.errors_treatment.errors_types.EmptyContentPointerException;
-import com.chdatabase.utils.errors_treatment.errors_types.NullPointerExceptionCustomized;
 
 @Component
 public class SignController {
@@ -15,37 +15,22 @@ public class SignController {
 	private SignDAO dao;
 	
 	@Autowired
-	private SignModelValidator validatorOfFields;
+	private SignModelValidator validatorOfSignModelFields;
 	
-	public SignModel verifyContent(SignModel model) {
-		if (
-		this.validatorOfFields.validateIsNotNull(model.getName()) &&
-		this.validatorOfFields.validateIsNotNull(model.getData().getNickName()) &&
-		this.validatorOfFields.validateIsNotNull(model.getPassword()) &&
-		this.validatorOfFields.validateIsNotNull(model.getData().getClassGenre())
-		)
-		{	
-			
-			if (
-			this.validatorOfFields.validateIsNotEmpty(model.getName()) &&
-			this.validatorOfFields.validateIsNotEmpty(model.getData().getNickName()) &&
-			this.validatorOfFields.validateIsNotEmpty(model.getPassword())
-			)
-			{
-				
-				if (this.validatorOfFields.validateClassGenreItems(model.getData().getClassGenre())){
-					return this.dao.save(model);
-				} else {
-					throw new InvalidClassGenre("Dados de classe inválidos!");
-				}
-				
-			} else {
-				throw new EmptyContentPointerException("Campo Vazio!");
-			}
-			
-		} else {
-			throw new NullPointerExceptionCustomized("Campo nulo!");
-		}
+	public SignModel verifyContentOfSignModelBeforeSave(SignModel model) {
+		if (this.validatorOfSignModelFields.validateIsNotNull(model.getName()) && this.validatorOfSignModelFields.validateIsNotEmpty(model.getName())) {
+			if (this.validatorOfSignModelFields.validateIsNotNull(model.getPassword()) && this.validatorOfSignModelFields.validateIsNotEmpty(model.getPassword())) {
+				if (this.validatorOfSignModelFields.validateIsNotNull(model.getData())) {
+					if (this.validatorOfSignModelFields.validateIsNotNull(model.getData().getNickName()) && this.validatorOfSignModelFields.validateIsNotEmpty(model.getData().getNickName())) {
+						if (this.validatorOfSignModelFields.validateIsNotNull(model.getData().getHitPoints()) && this.validatorOfSignModelFields.validateIsNumberIsEqualsToOneHundred(model.getData().getHitPoints())) {
+							if (this.validatorOfSignModelFields.validateIsNotNull(model.getData().getLevel()) && this.validatorOfSignModelFields.validateIsNumberEqualsOne(model.getData().getLevel())) {								
+								return this.dao.save(model);
+							} throw new InvalidPlayerData("Não foi possível realizar cadastro!", "Level inválido! Esperado: 1");
+						} throw new InvalidPlayerData("Não foi possível realizar cadastro!", "Hit points inválidos! Esperado: 100");
+					} throw new InvalidPlayerData("Não foi possível realizar cadastro!", "Nickname inválido");
+				} throw new InvalidPlayerData("Não foi possível realizar cadastro!", "Dados do jogador nulos!");
+			} throw new InvalidSignFields("Não foi possível realizar cadastro!", "Senha inválida!");
+		} throw new InvalidSignFields("Não foi possível realizar cadastro!", "Nome inválido!");
 	}
 
 }
