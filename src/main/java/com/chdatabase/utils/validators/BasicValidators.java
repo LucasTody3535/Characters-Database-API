@@ -14,7 +14,7 @@ public class BasicValidators {
 		return !fieldToValidate.isBlank();
 	}
 	
-	public boolean validateIsNumberNotLessThanZero(Long number) {
+	public boolean validateIfNumberIsMoreThanZero (Long number) {
 		return number.intValue() > 0;
 	}
 	
